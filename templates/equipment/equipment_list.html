@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Equipment <a class="btn btn-sm btn-primary" href="{% url 'equipment:equipment_create' %}">Add</a></h3>
+<div class="mb-2">
+<a class="btn btn-outline-primary btn-sm" href="{% url 'reports:equipment_pdf' %}">PDF</a>
+<a class="btn btn-outline-success btn-sm" href="{% url 'reports:equipment_excel' %}">Excel</a>
+</div>
+<table class="table table-striped"><tr><th>Item</th><th>Category</th><th>Qty</th><th>Site</th><th>Status</th><th>Photo</th><th>Actions</th></tr>
+{% for item in object_list %}<tr><td>{{ item.item_name }}</td><td>{{ item.get_category_display }}</td><td>{{ item.quantity }}</td><td>{{ item.site }}</td><td>{{ item.status }}</td><td>{% if item.photo %}<img src="{{ item.photo.url }}" width="50">{% endif %}</td><td><a href="{% url 'equipment:equipment_update' item.pk %}">Edit</a> | <a href="{% url 'equipment:equipment_delete' item.pk %}">Delete</a></td></tr>{% endfor %}
+</table>
+{% endblock %}

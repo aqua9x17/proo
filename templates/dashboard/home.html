@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-3">Dashboard</h2>
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Total Motors</h6><h3>{{ total_motors }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Running Motors</h6><h3>{{ running_motors }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Stopped Motors</h6><h3>{{ stopped_motors }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Today's Hours</h6><h3>{{ today_hours }}</h3></div></div></div>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-6"><div class="card"><div class="card-body"><h6>Employees Present</h6><h3>{{ employees_present }}</h3></div></div></div>
+  <div class="col-md-6"><div class="card"><div class="card-body"><h6>Extra Equipment</h6><h3>{{ equipment_count }}</h3></div></div></div>
+</div>
+<div class="card mb-3"><div class="card-body"><h5>Important Site Messages</h5>
+  <ul>{% for msg in important_messages %}<li><strong>{{ msg.title }}</strong> - {{ msg.message }}</li>{% empty %}<li>No important messages.</li>{% endfor %}</ul>
+</div></div>
+{% endblock %}

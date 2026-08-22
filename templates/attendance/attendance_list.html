@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Attendance <a class="btn btn-sm btn-primary" href="{% url 'attendance:attendance_create' %}">Add</a></h3>
+<div class="mb-2">
+<a class="btn btn-outline-primary btn-sm" href="{% url 'reports:attendance_pdf' %}">PDF</a>
+<a class="btn btn-outline-success btn-sm" href="{% url 'reports:attendance_excel' %}">Excel</a>
+</div>
+<table class="table"><tr><th>Employee</th><th>Date</th><th>Status</th><th>Check In</th><th>Check Out</th><th>Hours</th><th>Actions</th></tr>
+{% for a in object_list %}<tr><td>{{ a.employee }}</td><td>{{ a.date }}</td><td>{{ a.get_status_display }}</td><td>{{ a.check_in }}</td><td>{{ a.check_out }}</td><td>{{ a.working_hours }}</td><td><a href="{% url 'attendance:attendance_update' a.pk %}">Edit</a></td></tr>{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Site Messages <a class="btn btn-sm btn-primary" href="{% url 'sites:message_create' %}">Add</a></h3>
+<table class="table"><tr><th>Title</th><th>Site</th><th>Priority</th><th>Expiry</th><th>Actions</th></tr>
+{% for msg in object_list %}<tr><td>{{ msg.title }}</td><td>{{ msg.site }}</td><td>{{ msg.get_priority_display }}</td><td>{{ msg.expiry_date }}</td><td><a href="{% url 'sites:message_update' msg.pk %}">Edit</a> | <a href="{% url 'sites:message_delete' msg.pk %}">Delete</a></td></tr>{% endfor %}
+</table>
+{% endblock %}

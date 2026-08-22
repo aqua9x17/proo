@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Motors <a class="btn btn-sm btn-primary" href="{% url 'pumping:motor_create' %}">Add</a></h3>
+<table class="table table-bordered"><tr><th>Name</th><th>Site</th><th>Status</th><th>Controls</th><th>Actions</th></tr>
+{% for m in object_list %}
+<tr>
+  <td>{{ m.name }}</td><td>{{ m.site }}</td><td>{{ m.get_status_display }}</td>
+  <td>
+    <form method="post" action="{% url 'pumping:motor_start' m.pk %}" class="d-inline">{% csrf_token %}
+      <button class="btn btn-success btn-sm">Start</button>
+    </form>
+    <form method="post" action="{% url 'pumping:motor_stop' m.pk %}" class="d-inline">{% csrf_token %}
+      <button class="btn btn-danger btn-sm">Stop</button>
+    </form>
+  </td>
+  <td><a href="{% url 'pumping:motor_update' m.pk %}">Edit</a> | <a href="{% url 'pumping:motor_delete' m.pk %}">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
