@@ -51,6 +51,10 @@ python manage.py runserver
 
 Open `http://127.0.0.1:8000/accounts/login/`.
 
+## Render Deployment
+- Build Command: `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
+- Start Command: `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
+
 ## Reports
 Use module pages to export PDF/Excel:
 - Motor logs
