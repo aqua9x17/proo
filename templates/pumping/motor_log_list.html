@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Motor Logs</h3>
+<div class="mb-2">
+<a class="btn btn-outline-primary btn-sm" href="{% url 'reports:motor_pdf' %}">PDF</a>
+<a class="btn btn-outline-success btn-sm" href="{% url 'reports:motor_excel' %}">Excel</a>
+</div>
+<table class="table table-striped"><tr><th>Motor</th><th>Operator</th><th>Start</th><th>Stop</th><th>Runtime(s)</th></tr>
+{% for log in object_list %}<tr><td>{{ log.motor }}</td><td>{{ log.operator }}</td><td>{{ log.start_time }}</td><td>{{ log.stop_time }}</td><td>{{ log.runtime_seconds }}</td></tr>{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Sites <a class="btn btn-sm btn-primary" href="{% url 'sites:site_create' %}">Add</a></h3>
+<table class="table"><tr><th>Name</th><th>Location</th><th>Actions</th></tr>
+{% for site in object_list %}<tr><td>{{ site.name }}</td><td>{{ site.location }}</td><td><a href="{% url 'sites:site_update' site.pk %}">Edit</a> | <a href="{% url 'sites:site_delete' site.pk %}">Delete</a></td></tr>{% endfor %}
+</table>
+{% endblock %}
